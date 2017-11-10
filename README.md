@@ -13,13 +13,13 @@ O programa correla_fase.py contém apenas duas funções: correla e escreve_arra
 A função correla recebe o 'pattern' dos arquivos que se deseja estudar e retora dois arrays (ou listas) tridimensionais contendo a correlação e o tau, respectivamente. A primeira dimensão representa cada um dos arquivos, a segunda e a terceira representam os canais.
 1. Argumento obrigatório:
    - pattern: string com o padrão para encontrar os aquivos que se deseja estudar. Em caso de dúvida procure informações no README.
-2. Argumentos Opcionais:
+2. Argumentos opcionais:
    - norm: booleano. Default 'True'. Retorna a correlação normalizada. Com o argumento norm='False' a correlação não é normalizada.
    - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas
 
 #### escreve_array
 A função escreve_array escreve um array com três dimensões de maneira legível em um arquivo. Pode ser utilizado para escrever um array com um número diferente de dimensões, mas pode comprometer a legibilidade.
-1. Argumentos obigatórios:
+1. Argumentos obrigatórios:
    - array: array que desejamos escrever
    - arquivo: string com o nome do arquivo de saída
 
