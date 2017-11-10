@@ -1,13 +1,15 @@
-#ME LEIA
+# ME LEIA
 
-##Correlação dos sinais do UPenn and Mayo Clinic's Seizure Detection Challenge
+## Correlação dos sinais do UPenn and Mayo Clinic's Seizure Detection Challenge
 
 Esse programa analisa os dados do desafio [UPenn and Mayo Clinic's Seizure Detection Challenge](https://www.kaggle.com/c/seizure-detection). Esses dados podem ser baixados mais facilmente pelo link no [Lief](http://lief.if.ufrgs.br/pub/EEG/)
 
 Optei por separar o programa em duas partes, para facilitar legibilidade e manipulação. As funções que manipulam, extraem e escrevem os dados estão no arquivo 'correla_fase.py', de onde podem ser importadas. Dessa forma pode se utilizar um programa de analise que recrute essas funções, conforme necessário. Um exemplo de análise possível encontra-se em 'analisa.py'. Neste programa são calculados as médias e os desvios das correlações e dos taus separando a analise entre os clipes ictais e interictais. 
 
-##correla_fase.py
+### correla_fase.py
 O programa correla_fase.py contém apenas duas funções: correla e escreve_array.
+
+#### correla
 A função correla recebe o 'pattern' dos arquivos que se deseja estudar e retora dois arrays (ou listas) tridimensionais contendo a correlação e o tau, respectivamente. A primeira dimensão representa cada um dos arquivos, a segunda e a terceira representam os canais.
 1. Argumento obrigatório:
    - pattern: string com o padrão para encontrar os aquivos que se deseja estudar. Em caso de dúvida procure informações no README.
@@ -15,12 +17,13 @@ A função correla recebe o 'pattern' dos arquivos que se deseja estudar e retor
    - norm: booleano. Default 'True'. Retorna a correlação normalizada. Com o argumento norm='False' a correlação não é normalizada.
    - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas
 
+#### escreve_array
 A função escreve_array escreve um array com três dimensões de maneira legível em um arquivo. Pode ser utilizado para escrever um array com um número diferente de dimensões, mas pode comprometer a legibilidade.
 1. Argumentos obigatórios:
    - array: array que desejamos escrever
    - arquivo: string com o nome do arquivo de saída
 
-## Pattern:
+#### Pattern:
 A variável pattern consiste em uma string que expressa os padrões de nomeação dos arquivos. Funciona de maneira similar a uma expressão regular: '?' substitui um único caracter e '*' substitui qualquer sequência de caracteres. Abaixo tem alguns exemplos de patterns possíveis e o resultado que seria obtido: 
 
 - pattern = 'Patient_1/*_ictal_*mat' #Seleciona todos os ictais do pacientes 1
@@ -30,3 +33,6 @@ A variável pattern consiste em uma string que expressa os padrões de nomeaçã
 - pattern = 'Patient_?/*mat' #Seleciona todos os sinais de todos os pacientes
 - pattern = '*/*_ictal_*mat' #Seleciona os ictais de todos os humanos e cachorros
 - pattern = 'Dog_?/*_ictal_*mat' #Seleciona todos os ictais de todos os cachorros
+
+### analisa.py
+Esse programa ainda precisa de correções.
