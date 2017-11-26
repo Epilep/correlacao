@@ -18,9 +18,15 @@ Pattern:
 A variável pattern consiste em uma string que expressa os padrões de nomeação dos arquivos. Funciona de maneira similar a uma expressão regular: '?' substitui um único caracter e '*' substitui qualquer sequência de caracteres. Abaixo tem alguns exemplos de patterns possíveis e o resultado que seria obtido: 
 
 pattern = 'Patient_1/*_ictal_*mat' #Seleciona todos os ictais do pacientes 1
+
 pattern = 'Patient_?/*_ictal_*mat' #Seleciona todos os ictais de todos os pacientes
+
 pattern = 'Patient_?/*_interictal_*mat' #Seleciona todos os interictais de todos os pacientes
+
 pattern = 'Patient_?/*_testing_*mat' #Seleciona todos os testes de todos os pacientes
+
 pattern = 'Patient_?/*mat' #Seleciona todos os sinais de todos os pacientes
+
 pattern = '*/*_ictal_*mat' #Seleciona os ictais de todos os humanos e cachorros
+
 pattern = 'Dog_?/*_ictal_*mat' #Seleciona todos os ictais de todos os cachorros

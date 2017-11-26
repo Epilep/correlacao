@@ -3,7 +3,7 @@ import scipy.io
 import numpy as np
 from scipy.signal import hilbert
 
-def correla(pattern, norm=True, array=True):
+def correla(pattern, norm=True, array=True, correlation=True):
     """Essa função recebe o 'pattern' dos arquivos que se deseja estudar e retora dois arrays (ou listas) tridimensionais contendo a correlação e o tau, respectivamente. A primeira dimensão representa cada um dos arquivos, a segunda e a terceira representam os canais.
     Argumento obrigatório:
                           - pattern: string com o padrão para encontrar os aquivos que se deseja estudar. Em caso de dúvida procure informações no README
@@ -23,10 +23,15 @@ def correla(pattern, norm=True, array=True):
         corr_clip = [[0 for i in chan] for j in chan] #Cria listas do tamanho adequado para armazenar os valores
         tau_clip = [[0 for i in chan] for j in chan]
         H = hilbert(data) # Transformada de hilbert dos dados
-        fase = np.arctan2(np.imag(H),data) 
-        for i in range(nchan): #Esses laços varrem todos os canais e armazenam as correlações e taus
-            for j in range(nchan):
-                c = np.correlate(fase[i],fase[j],mode='full')
+        fase = np.arctan2(np.imag(H),data)
+        if correlation:
+            #print(fase[0])
+            #fase = np.array(map(lambda x: x/x.std(),fase))
+            fase = np.apply_along_axis(lambda x: x/(x.std()*len(x)),0,fase)
+            #print(fase[0])
+        for i,fasei in enumerate(fase): #Esses laços varrem todos os canais e armazenam as correlações e taus
+            for j,fasej in enumerate(fase):
+                c = np.correlate(fasei,fasej,mode='full')
                 t = np.argmax(abs(c))
                 tau_clip[i][j] = t/freq - 1
                 corr_clip[i][j] = c[t]
