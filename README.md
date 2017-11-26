@@ -15,7 +15,8 @@ A função correla recebe o 'pattern' dos arquivos que se deseja estudar e retor
    - pattern: string com o padrão para encontrar os aquivos que se deseja estudar. Em caso de dúvida procure informações no README.
 2. Argumentos opcionais:
    - norm: booleano. Default 'True'. Retorna a correlação normalizada. Com o argumento norm='False' a correlação não é normalizada.
-   - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas
+   - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas.
+   - correlation: booleanto. Default 'True'. Retorna a correlação correalção. Se correlation='False' retorna a covariancia. 
 
 #### escreve_array
 A função escreve_array escreve um array com três dimensões de maneira legível em um arquivo. Pode ser utilizado para escrever um array com um número diferente de dimensões, mas pode comprometer a legibilidade.
