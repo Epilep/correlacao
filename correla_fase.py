@@ -11,6 +11,8 @@ def correla(pattern, norm=True, array=True, correlation=True):
                          - norm: booleano. Default 'True'. Retorna a correlação normalizada. Com o argumento norm='False' a correlação não é normalizada
                          - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas"""
     files = glob.glob(pattern) # Cria uma lista com todos os arquivos
+    # print(pattern)
+    # print(files)
     corr = [] #Listas vazias para armazenar corr e tau de todos os arquivos
     tau = []
     for f in files: # Laço sobre todos os arquivos
