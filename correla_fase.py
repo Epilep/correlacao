@@ -35,7 +35,7 @@ def correla(pattern, norm=True, array=True, correlation=True):
             for j,fasej in enumerate(fase):
                 c = np.correlate(fasei,fasej,mode='full')
                 t = np.argmax(abs(c))
-                tau_clip[i][j] = t/freq - 1
+                tau_clip[i][j] = (t-freq+1)/freq  
                 corr_clip[i][j] = c[t]
         if norm:
             for i in range(nchan): #laço para normalizar
