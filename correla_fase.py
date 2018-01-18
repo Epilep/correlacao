@@ -11,8 +11,6 @@ def correla(pattern, norm=True, array=True, correlation=True):
                          - norm: booleano. Default 'True'. Retorna a correlação normalizada. Com o argumento norm='False' a correlação não é normalizada
                          - array: booleanp. Default 'True'. Retorna corr e tau como arrays. Com o argumento array='False' os valores retornam como listas"""
     files = glob.glob(pattern) # Cria uma lista com todos os arquivos
-    # print(pattern)
-    # print(files)
     corr = [] #Listas vazias para armazenar corr e tau de todos os arquivos
     tau = []
     for f in files: # Laço sobre todos os arquivos
@@ -27,23 +25,24 @@ def correla(pattern, norm=True, array=True, correlation=True):
         H = hilbert(data) # Transformada de hilbert dos dados
         fase = np.arctan2(np.imag(H),data)
         if correlation:
-            #print(fase[0])
-            #fase = np.array(map(lambda x: x/x.std(),fase))
             fase = np.apply_along_axis(lambda x: x/(x.std()*len(x)),0,fase)
             #print(fase[0])
         for i,fasei in enumerate(fase): #Esses laços varrem todos os canais e armazenam as correlações e taus
             for j,fasej in enumerate(fase):
                 c = np.correlate(fasei,fasej,mode='full')
                 t = np.argmax(abs(c))
-                tau_clip[i][j] = (t-freq+1)/freq  
+                tau_clip[i][j] = (t-freq+1)/freq # correlação numpy  
                 corr_clip[i][j] = c[t]
         if norm:
+            corr_diag = []
+            for i,ci in enumerate(corr_clip):
+                corr_diag.append(ci[i])
             for i in range(nchan): #laço para normalizar
-                cii = corr_clip[i][i]
+                cii = corr_diag[i]
                 for j in range(nchan):
-                    cjj = corr_clip[j][j]
+                    cjj = corr_diag[j]
                     corr_clip[i][j] = corr_clip[i][j] / np.sqrt(cii*cjj)
-                
+                    
         corr.append(corr_clip) #Armazena a correlação desse arquivo na lista de todos
         tau.append(tau_clip)
         
